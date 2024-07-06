@@ -15,13 +15,16 @@ public class CustomerServiceImpl implements CustomerService {
 		this.customerRepository = customerRepository;
 	}
 
-	@Override
+	@Override 
 	public Customer saveCustomer(Customer customer) throws CustomerExistException {
 		// if customer already exists (id,name,email) then throws CustomerExistsException
 		//else save customer in the repository
 		
 		Optional<Customer> customerById  =this.customerRepository.findCustomerById(customer.getId());
-		return null;
+		if(customerById.isPresent()) {
+			throw new CustomerExistException("Customer already Exist with this ID");
+		}
+		return this.customerRepository.saveCustomer(customer);
 	}
 
 }
