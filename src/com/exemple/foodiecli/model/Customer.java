@@ -27,7 +27,7 @@ public class Customer {
 	private String id;
     private String name;
     private String email;
-    private double password;
+    private String password;
     
     
     // Getter for customerId
@@ -61,12 +61,12 @@ public class Customer {
 	}
 	
     // Getter for password
-	public double getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	
     // Setter for password
-	public void setPassword(double password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	
@@ -75,14 +75,12 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, id, name, password);
 	}
-	
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -93,8 +91,11 @@ public class Customer {
 			return false;
 		Customer other = (Customer) obj;
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Double.doubleToLongBits(password) == Double.doubleToLongBits(other.password);
+				&& Objects.equals(password, other.password);
 	}
+	
+	
+	
     
     
 
